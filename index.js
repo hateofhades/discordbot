@@ -7,15 +7,21 @@ const random = new Random(Random.engines.mt19937().autoSeed());
 const jimp = require('jimp');
 const search = require('youtube-search');
 const request = require('request-promise');
-const token = "";
+
+const config = require('./config.json');
+
+const token = config.discord;
+
+
 const getYoutubeID = require('get-youtube-id');
 const fetchVideoInfo = require('youtube-info');
 const lowerCase = require('lower-case');
 const ytdl = require('ytdl-core');
+const manea = require('manea');
 
 var opts = {
   maxResults: 10,
-  key: ''
+  key: config.youtube
 };
 
 var voiceChannel;
