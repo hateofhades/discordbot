@@ -2,15 +2,12 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-//Other Requires
-const fs = require('fs');
-const request = require('request-promise');
-
 //Other Files
 const config = require('./config.json');
 const functions = require('./functions.js');
 const trivia = require("./trivia.js");
 const reddit = require("./reddit.js");
+const music = require("./music.js");
 
 //Configs
 const token = config.discord;
@@ -18,6 +15,15 @@ const token = config.discord;
 bot.on('ready', () => {
 	console.log("Bot is up and running!");
 	bot.user.setActivity('!help');
+});
+
+bot.on('voiceStateUpdate', (oldMember, newMember) => {
+	if(newMember.user == bot.user) {
+		if(newMember.voiceChannel == null)
+			music.closeChannel();
+		if(newMember.voiceChannel != null && oldMember.voiceChannel != null)
+			music.setChannel(newMember.voiceChannel);
+	}
 });
 
 bot.on('message', message => {
@@ -83,19 +89,19 @@ bot.on('message', message => {
 		} else if(words[0] == "answer") {
 			trivia.answer(message, words);
 		} else if(words[0] == "join") {
-			message.reply("this command is disabled! Music Functions are being reworked.");
+			music.join(message);
 		} else if(words[0] == "volume") {
 			message.reply("this command is disabled! Music Functions are being reworked.");
 		} else if(words[0] == "leave") {
-			message.reply("this command is disabled! Music Functions are being reworked.");
+			music.leave(message);
 		} else if(words[0] == "clear") {
-			message.reply("this command is disabled! Music Functions are being reworked.");
+			music.clearQueue(message);
 		} else if(words[0] == "queue") {
 			message.reply("this command is disabled! Music Functions are being reworked.");
 		} else if(words[0] == "skip") {
 			message.reply("this command is disabled! Music Functions are being reworked.");
 		} else if(words[0] == "play") {
-			message.reply("this command is disabled! Music Functions are being reworked.");
+			music.play(message, words);
 		}
 		else {
 			message.author.send("Invalid command, please use !help in a chat room to see my commands!");
