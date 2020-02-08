@@ -1,10 +1,7 @@
 const Discord = require('discord.js');
-const jimp = require('jimp');
 const request = require('request-promise');
 const parseString = require('xml2js').parseString;
 const fs = require('fs');
-const Random = require("random-js");
-const random = new Random(Random.engines.mt19937().autoSeed());
 
 module.exports = {
   sendHelpMessage: function (user) {
@@ -39,7 +36,7 @@ function getRandomTeam(message) {
 		else if(i == 4)
 			rol = "Support";
 		
-		var value = random.integer(0, Object.keys(json.data).length - 1);	
+		var value = Math.floor(Math.random() * Object.keys(json.data).length);	
 		
 		const embed = new Discord.RichEmbed()
 								 .setTitle(json.data[Object.keys(json.data)[value]].name + " - " + rol)

@@ -1,27 +1,8 @@
 {
-  "name": "discord",
-  "version": "1.0.0",
-  "description": "Discord Bot",
+  "name": "discordbot",
+  "version": "0.1.3",
+  "description": "A simple discord bot",
   "main": "index.js",
-  "dependencies": {
-    "discord.js": "^11.4.2",
-    "fs": "^0.0.1-security",
-    "get-youtube-id": "^1.0.0",
-    "html-entities": "^1.2.1",
-    "jimp": "^0.6.0",
-    "lower-case": "^1.1.4",
-    "manea": "^1.4.8",
-    "opusscript": "^0.0.6",
-    "parse-time": "^0.1.4",
-    "random-js": "^1.0.8",
-    "request-promise": "^4.2.2",
-    "uws": "^100.0.1",
-    "xml2js": "^0.4.19",
-    "youtube-info": "^1.3.2",
-    "youtube-search": "^1.1.4",
-    "ytdl-core": "^0.28.3"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -38,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/andreistalker/discordbot/issues"
   },
-  "homepage": "https://github.com/andreistalker/discordbot#readme"
+  "homepage": "https://github.com/andreistalker/discordbot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "html-entities": "^1.2.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
+    "xml2js": "^0.4.23"
+  }
 }

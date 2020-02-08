@@ -2,16 +2,9 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-//YouTube Requires
-const search = require('youtube-search');
-const ytdl = require('ytdl-core');
-const getYoutubeID = require('get-youtube-id');
-const fetchVideoInfo = require('youtube-info');
-
 //Other Requires
 const fs = require('fs');
 const request = require('request-promise');
-const manea = require('manea');
 
 //Other Files
 const config = require('./config.json');
@@ -21,19 +14,6 @@ const reddit = require("./reddit.js");
 
 //Configs
 const token = config.discord;
-var opts = {
-  maxResults: 10,
-  key: config.youtube
-};
-
-//Music Variables
-var voiceChannel;
-var musicChannel;
-var nowMusic;
-var musicQueue = [];
-var dispatcher;
-var isPlaying = 0;
-
 
 bot.on('ready', () => {
 	console.log("Bot is up and running!");
