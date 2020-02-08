@@ -4,8 +4,43 @@ const fs = require('fs');
 
 const entities = new Entities();
 
+var triviaon = 0;
+
 module.exports = {
-  trivia: function(callback) {
+   getTrivia : function (message) {
+		if(!triviaon) {
+			trivia(function(msg, answer1, answer2, answer3, answer4) {
+				message.channel.send(msg);
+				message.channel.send("A) " + answer1 + " | B) " + answer2 + " | C) " + answer3 + " | D) " + answer4);
+			});
+			triviaon = 1;
+		} else {
+			var json = JSON.parse(fs.readFileSync('trivia.json', 'utf8'));
+					
+			message.channel.send(json[0]);
+			message.channel.send("A) " + json[1] + " | B) " + json[2] + " | C) " + json[3] + " | D) " + json[4]);
+		}
+   },
+   answer : function (message, words) {
+		if(triviaon) {
+			if(words[1] && (words[1].toLowerCase() == "a" || words[1].toLowerCase() == "b" || words[1].toLowerCase() == "c" || words[1].toLowerCase() == "d")) {
+				triviaon = 0;
+				var answerr = check_answer(words[1].toLowerCase());
+				if(answerr == 1) {
+					message.channel.send("You have answered correctly!");
+				} else {
+					message.channel.send("Wrong answer. Correct answer: " + answerr);
+				}
+			} else {
+				message.reply("usage: !answer <a|b|c|d>");
+			}
+		} else {
+			message.reply("there is no trivia question. You can request one by writing !trivia.");
+		}
+   }
+};
+
+function trivia(callback) {
 	request("https://opentdb.com/api.php?amount=1&difficulty=medium&type=multiple", function (error, response, body) {
 		var json = JSON.parse(body);
 		var question, answer1, answer2, answer3, answer4, corect, alled, mult;
@@ -43,9 +78,9 @@ module.exports = {
 			callback(question, answer1, answer2, answer3, answer4);
 		});
 	});
-  },
-  
-  check_answer: function(answer) {
+}
+
+function check_answer(answer) {
 	var json = JSON.parse(fs.readFileSync('trivia.json', 'utf8'));
 	if(json[5] == answer) {
 		return 1;
@@ -61,9 +96,7 @@ module.exports = {
 			msg = "D) " + json[4];
 		return msg;
 	}
-  }
-};
-
+}
 
 function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {

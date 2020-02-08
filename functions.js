@@ -100,12 +100,8 @@ function sendHelpMessage(user) {
 			value: "!join !leave !volume <0 - 100> !play !queue"
 		},
 		{
-			name: "Memegenerator",
-			value: "!scroll !warning !buttons !slap !achievement"
-		},
-		{
 			name: "Fun",
-			value: "!quote !chucknorris !ask !cat !dog"
+			value: "!quote !cat !dog"
 		},
 		{
 			name: "Trivia",
