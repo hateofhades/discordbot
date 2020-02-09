@@ -23,6 +23,8 @@ bot.on('voiceStateUpdate', (oldMember, newMember) => {
 			music.closeChannel();
 		if(newMember.voiceChannel != null && oldMember.voiceChannel != null)
 			music.setChannel(newMember.voiceChannel);
+		if(newMember.voiceChannel != null)
+			music.setBot(bot.user);
 	}
 });
 
@@ -91,15 +93,15 @@ bot.on('message', message => {
 		} else if(words[0] == "join") {
 			music.join(message);
 		} else if(words[0] == "volume") {
-			message.reply("this command is disabled! Music Functions are being reworked.");
+			music.volume(message, words);
 		} else if(words[0] == "leave") {
 			music.leave(message);
 		} else if(words[0] == "clear") {
 			music.clearQueue(message);
 		} else if(words[0] == "queue") {
-			message.reply("this command is disabled! Music Functions are being reworked.");
+			music.queue(message, words);
 		} else if(words[0] == "skip") {
-			message.reply("this command is disabled! Music Functions are being reworked.");
+			music.skip(message);
 		} else if(words[0] == "play") {
 			music.play(message, words);
 		}
