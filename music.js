@@ -100,7 +100,7 @@ module.exports = {
 		if(queue.length == 0) {
 			message.reply("queue is empty!");
 		} else if((words[1] - 1) * 5 < queue.length) {
-			var embeded = new Discord.RichEmbed().setTitle("Queue " + words[1] + "/" + (Math.floor((queue.length - 1) / 5) + 1) + " | Total Queue Time: " + secondsToDuration(totalQueue));
+			var embeded = new Discord.MessageEmbed().setTitle("Queue " + words[1] + "/" + (Math.floor((queue.length - 1) / 5) + 1) + " | Total Queue Time: " + secondsToDuration(totalQueue));
 			if(words[1] < Math.floor(queue.length / 5) + 1)
 				for(var i = 5 * (words[1] - 1); i <= 5 * (words[1] - 1) + 4; i++) {
 					embeded.addField((i + 1) + ". " + queue[i][1], "Duration: " + queue[i][2] + " | Views: " + queue[i][3]);
@@ -238,7 +238,7 @@ function checkQueue() {
 
 function createMusicEmbed(items, words, message, callback) {
 	var i = 1;
-	var embeded = new Discord.RichEmbed().setTitle("Youtube Search: " + words);
+	var embeded = new Discord.MessageEmbed().setTitle("Youtube Search: " + words);
 	items.forEach(element => {
 		getDuration(element.id.videoId, 0, function(duration, views) {
 			embeded.addField(i + ". " + element.snippet.title, "Duration: " + duration + " | Views: " + views);
