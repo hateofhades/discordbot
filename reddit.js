@@ -19,13 +19,13 @@ function reddit(sub, callback) {
 
             if (json[0].data.children[0].data.url != null) {
                 if (json[0].data.children[0].data.title.length < 256) {
-                    embed = new Discord.RichEmbed()
+                    embed = new Discord.MessageEmbed()
                         .setTitle(json[0].data.children[0].data.title)
                         .setURL("https://reddit.com" + json[0].data.children[0].data.permalink)
                         .setImage(json[0].data.children[0].data.url)
                         .setFooter("👍 " + json[0].data.children[0].data.score + " | 💬 " + json[0].data.children[0].data.num_comments + " | By " + json[0].data.children[0].data.author + " on " + json[0].data.children[0].data.subreddit_name_prefixed);
                 } else {
-                    embed = new Discord.RichEmbed()
+                    embed = new Discord.MessageEmbed()
                         .setTitle("Title too long.")
                         .setURL("https://reddit.com" + json[0].data.children[0].data.permalink)
                         .setImage(json[0].data.children[0].data.url)
