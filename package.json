@@ -22,7 +22,7 @@
     },
     "homepage": "https://github.com/andreistalker/discordbot#readme",
     "dependencies": {
-        "discord.js": "^11.5.1",
+        "discord.js": "^12.2.0",
         "get-youtube-id": "^1.0.1",
         "googleapis": "^52.1.0",
         "html-entities": "^1.2.1",
