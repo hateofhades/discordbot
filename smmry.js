@@ -23,7 +23,7 @@ function summary(url, message, callback) {
             if (json != null) {
                 var keywords = json.sm_api_keyword_array;
                 keywords = keywords.join(", ");
-                embed = new Discord.RichEmbed()
+                embed = new Discord.MessageEmbed()
                     .setTitle(json.sm_api_title > 256 ? json.sm_api_title.slice(0, 256) : json.sm_api_title)
                     .setAuthor(message.author.username, message.author.avatarURL)
                     .setURL(url)
@@ -38,14 +38,14 @@ function summary(url, message, callback) {
 
                 callback(embed);
             } else { //handle error
-                embed = new Discord.RichEmbed()
+                embed = new Discord.MessageEmbed()
                     .setTitle("Error")
                     .addField("Something bad happend", "An error occured!", true);
 
                 callback(embed);
             }
         } else {
-            embed = new Discord.RichEmbed()
+            embed = new Discord.MessageEmbed()
                 .setTitle("ERROR")
                 .addField("ERROR", response.statusCode, true);
         } //handle error
