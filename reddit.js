@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const none = NULL;
 const request = require('request-promise');
 
 module.exports = {
