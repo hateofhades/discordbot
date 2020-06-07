@@ -38,7 +38,7 @@ function getRandomTeam(message, test) {
 
         var value = Math.floor(Math.random() * Object.keys(json.data).length);
 
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
             .setTitle(json.data[Object.keys(json.data)[value]].name + " - " + rol)
             .setThumbnail("http://ddragon.leagueoflegends.com/cdn/10.11.1/img/champion/" + json.data[Object.keys(json.data)[value]].id + ".png");
 
@@ -57,7 +57,7 @@ function requestImage(what, message, test) {
 
                 var json = JSON.parse(JSON.stringify(result));
 
-                const embed = new Discord.RichEmbed()
+                const embed = new Discord.MessageEmbed()
                     .setImage(json.response.data[0].images[0].image[0].url[0]);
 
                 if (!test)
@@ -72,7 +72,7 @@ function requestImage(what, message, test) {
 
             var json = JSON.parse(body);
 
-            const embed = new Discord.RichEmbed()
+            const embed = new Discord.MessageEmbed()
                 .setImage(json[0].url);
 
             if (!test)
@@ -86,7 +86,7 @@ function requestImage(what, message, test) {
 function quoteMessage(channel, quoted, words) {
     words.splice(0, 2);
 
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
         .setAuthor(quoted.username, quoted.avatarURL)
         .setColor(0xFF00FF)
         .setDescription(words.join(" "));
