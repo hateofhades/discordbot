@@ -1,0 +1,23 @@
+name: Tester
+
+on: 
+  pull_requests:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Running Unit Tests
+    runs-on: windows-latest
+        
+    steps:
+      - uses: actions/checkout@v2.2.0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Installing
+        run: npm install
+      - name: Testing
+        run: npm test
+        
