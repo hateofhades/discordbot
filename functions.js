@@ -100,7 +100,7 @@ function sendHelpMessage(user) {
             color: 3447003,
             fields: [{
                     name: "Subreddits",
-                    value: "!meme !4chan !blacktwitter !dank !facepalm !meirl !memeeconomy !wholesome !deep !niceguys !nicegirls !leaguememe !lwiay !loop !hmmm !woooosh !pcmr !fellowkids"
+                    value: "!meme !4chan !dank !facepalm !meirl !memeeconomy !wholesome !deep !niceguys !nicegirls !leaguememe !lwiay !loop !hmmm !woooosh !fellowkids !pics"
                 },
                 {
                     name: "Music Player",
@@ -116,7 +116,7 @@ function sendHelpMessage(user) {
                 },
                 {
                     name: "Utilities",
-                    value: "!team"
+                    value: "!team !summarize <url> !summary <url>"
                 }
             ]
         }
