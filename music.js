@@ -233,7 +233,7 @@ function checkQueue() {
 		totalTime = time;
 		currentTime = 0;
 		playingTitle = queue[0][1];
-		queue[0][4].reply("I'm now playing " + queue[0][1]).then(message => message.delete(durationToSeconds(time) * 1000));
+		queue[0][4].reply("I'm now playing " + queue[0][1]);
 		playMusic("https://www.youtube.com/watch?v=" + queue[0][0]);
 		
 		//botUser.setActivity(queue[0][1] + " - 00:00/" + time);
