@@ -12,6 +12,7 @@ const youtube = google.youtube({
 });
 
 var channel = null;
+var channelVoice = null;
 var dispatcher = null;
 var volume = 0.5;
 var totalQueue = 0;
@@ -39,7 +40,10 @@ module.exports = {
   join : function (message) {
 	if(message.member.voice.channel && channel == null) {
 		channel = message.member.voice.channel;
-		message.member.voice.channel.join();
+		
+		channel.join()
+		      .then(connection => channelVoice = connection)
+		      .catch(console.error);
 		
 		console.log("I have joined voice channel: " + channel.name + ". Requested by: " + message.author.username + ".");
 	} else if(channel != null) {
@@ -135,7 +139,9 @@ module.exports = {
   play : function (message, words) {
 	if(channel == null && message.member.voice.channel != null) {
 		channel = message.member.voice.channel;
-		channel.join();
+		channel.join()
+		      .then(connection => channelVoice = connection)
+		      .catch(console.error);
 		
 		console.log("I have joined voice channel: " + channel.name + ". Requested by: " + message.author.username + ".");
 		
@@ -313,7 +319,7 @@ function formatViews(views) {
 }
 
 function playMusic(ytlink) {
-	dispatcher = channel.connection.playStream(ytdl(ytlink, {filter: "audioonly"}));
+	dispatcher = channelVoice.play(ytdl(ytlink, {filter: "audioonly"}));
 	dispatcher.setVolume(volume);
 	
 	dispatcher.on("end", function () {
