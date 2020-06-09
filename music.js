@@ -26,7 +26,7 @@ var botUser = null;
 var currentTime = 0;
 var totalTime = 0;
 
-setInterval(function () {
+/*setInterval(function () {
 	if(playing) {
 		currentTime++;
 		botUser.setActivity(playingTitle + " - " + secondsToDuration(currentTime) + "/" + totalTime);
@@ -34,7 +34,7 @@ setInterval(function () {
 		if(botUser != null)
 			botUser.setActivity("!help");
 	}
-}, 1000);
+}, 1000);*/
 
 module.exports = {
   join : function (message) {
@@ -236,7 +236,7 @@ function checkQueue() {
 		queue[0][4].reply("I'm now playing " + queue[0][1]).then(message => message.delete(durationToSeconds(time) * 1000));
 		playMusic("https://www.youtube.com/watch?v=" + queue[0][0]);
 		
-		botUser.setActivity(queue[0][1] + " - 00:00/" + time);
+		//botUser.setActivity(queue[0][1] + " - 00:00/" + time);
 		
 		queue.shift();
 	}
