@@ -322,7 +322,7 @@ function playMusic(ytlink) {
 	dispatcher = channelVoice.play(ytdl(ytlink, {filter: "audioonly"}));
 	dispatcher.setVolume(volume);
 	
-	dispatcher.on("end", function () {
+	dispatcher.on("finish", function () {
 		playing = 0;
 		checkQueue();
 	});
