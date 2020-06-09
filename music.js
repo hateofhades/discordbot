@@ -37,9 +37,9 @@ setInterval(function () {
 
 module.exports = {
   join : function (message) {
-	if(message.member.voiceChannel && channel == null) {
-		channel = message.member.voiceChannel;
-		message.member.voiceChannel.join();
+	if(message.member.voice.channel && channel == null) {
+		channel = message.member.voice.channel;
+		message.member.voice.channel.join();
 		
 		console.log("I have joined voice channel: " + channel.name + ". Requested by: " + message.author.username + ".");
 	} else if(channel != null) {
@@ -49,7 +49,7 @@ module.exports = {
 	}
   },
   leave : function (message) {
-	var voice = message.member.voiceChannel;
+	var voice = message.member.voice.channel;
 	if(channel == null) {
 		message.reply("I'm not in a voice channel!");
 	} else if(channel && channel == voice) {
@@ -81,7 +81,7 @@ module.exports = {
   },
   skip : function (message) {
 	if(playing) {
-		if(channel = message.member.voiceChannel) {
+		if(channel = message.member.voice.channel) {
 			
 			message.reply("Skipped: " + playingTitle);
 			console.log("Skipped " + playingTitle + ". Requested by: " + message.author.username);
@@ -133,18 +133,18 @@ module.exports = {
 	channel = null;
   },
   play : function (message, words) {
-	if(channel == null && message.member.voiceChannel != null) {
-		channel = message.member.voiceChannel;
+	if(channel == null && message.member.voice.channel != null) {
+		channel = message.member.voice.channel;
 		channel.join();
 		
 		console.log("I have joined voice channel: " + channel.name + ". Requested by: " + message.author.username + ".");
 		
 		searchOrAdd(message, words);
-	} else if(channel == null && message.member.voiceChannel == null) {
+	} else if(channel == null && message.member.voice.channel == null) {
 		message.reply("you're not in a voice channel!");
-	} else if(channel == message.member.voiceChannel) {
+	} else if(channel == message.member.voice.channel) {
 		searchOrAdd(message, words);
-	} else if(channel != message.member.voiceChannel) {
+	} else if(channel != message.member.voice.channel) {
 		message.reply("you can't add music to the queue, we're not in the same voice channel! You can find me in: " + channel.name + ".");
 	}		
   }
